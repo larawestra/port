@@ -65,9 +65,34 @@
     position:fixed;top:0;left:0;right:0;z-index:50;
     display:flex;align-items:center;justify-content:space-between;
     padding:18px 32px;
-    background:linear-gradient(var(--ink), rgba(24,46,64,.6) 70%, transparent);
-    backdrop-filter:saturate(120%) blur(2px);
+    background:linear-gradient(var(--ink), rgba(24,46,64,.6) 70%, transparent);}
+    @media (max-width:880px){
+  header{backdrop-filter:none}
+  nav{
+    position:fixed;
+    top:0; right:0; bottom:0; left:auto;
+    width:74%; max-width:320px;
+    background:var(--ink-2);
+    border-left:1px solid var(--line);
+    flex-direction:column; justify-content:center;
+    padding:40px; gap:24px;
+    transform:translateX(100%);
+    transition:transform .4s var(--ease);
+    z-index:55;
   }
+  nav.open{transform:translateX(0)}
+  .nav-toggle{
+    display:flex; flex-direction:column; gap:5px;
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:9px 8px;
+    cursor:pointer;
+    z-index:60;
+  }
+}
+
+  
   .mark{font-family:"Poppins",sans-serif;font-size:1.05rem;letter-spacing:.04em;display:flex;align-items:center;gap:.55em}
   .mark b{font-weight:600}
   .mark span{font-family:"Poppins",sans-serif;font-size:.6rem;letter-spacing:.22em;color:var(--slate)}
