@@ -1,3 +1,115 @@
+Claude
+Shared a file, read a file, ran 2 commands
+I’ve built the new section into the updated index.html. If you’re using that file, upload it to GitHub and you’re done.
+
+I checked the title and date against the PDF: “Gulf states’ partners will fear an extended war”, Oxford Analytica, 22 July. The one-line description is my own summary, not copied from the brief. Neither card links to the article, because it’s behind a paywall; the general Daily Brief link sits underneath instead.
+
+If you’d rather paste it into your current site, it takes two steps.
+
+1. Replace everything from <!-- FORTHCOMING --> down to (not including) <!-- CONTACT --> with:
+
+html
+  <!-- OXFORD ANALYTICA -->
+  <section class="band" id="oxford-analytica">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="num">§ 06</span>
+        <h2>Oxford Analytica</h2>
+        <span class="rule"></span>
+      </div>
+      <p class="sec-lede reveal"><span class="runin">Published</span>Analysis written for Oxford Analytica from Dow Jones, which provides independent, forward-looking analysis of world politics and international political economy to policymakers and business leaders across nearly 200 subscribing governments, multinational corporations, and international institutions.</p>
+      <div class="forth reveal">
+        <article class="fitem">
+          <span class="fstat">Oxford Analytica Daily Brief · Emerging economies</span>
+          <h3>Gulf states’ partners will fear an extended war</h3>
+          <p class="fdesc">How a prolonged US–Iran conflict could strain the Gulf loans, investment, currency swaps and remittances that Pakistan, Egypt and Ethiopia depend on.</p>
+          <span class="fmeta">22 July 2026</span>
+        </article>
+        <article class="fitem">
+          <span class="fstat">Oxford Analytica Daily Brief · Emerging economies</span>
+          <h3>Further analysis</h3>
+          <span class="fmeta">Forthcoming</span>
+        </article>
+      </div>
+      <a class="mono more reveal" href="https://www.oxan.com/services/daily-brief/" target="_blank" rel="noopener">The Oxford Analytica Daily Brief ↗</a>
+    </div>
+  </section>
+2. In the <style> block, replace the existing .forth{…} line and the .fitem h3{…} line with:
+
+css
+  .forth{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .fitem h3{font-size:1.24rem;color:var(--bone);line-height:1.25}
+  .fdesc{font-size:.96rem;color:var(--bone-dim);line-height:1.6;max-width:52ch}
+  .fmeta{margin-top:auto}
+  @media (max-width:880px){.forth{grid-template-columns:1fr}}
+On a desktop the two cards sit side by side, and on phones they stack. When your September piece passes three months, change “Further analysis” to its title, add a one-line description, and change “Forthcoming” to its publication date.
+
+Index
+Code
+·HTML
+i want to provide  a link to the pdf article
+
+Shared 2 files, read a file, ran a command
+The Gulf brief card now has a teal “Read the brief (PDF) ↗” link next to the date, which opens the PDF in a new tab.
+
+To make it work:
+
+Upload index.html to GitHub, replacing your current one.
+Upload oxford-analytica-gulf-states-partners-extended-war.pdf to the same folder as index.html. Keep that exact name; it’s the article you sent me, renamed without spaces so the link works reliably.
+If you’re pasting by hand instead, replace the <span class="fmeta">22 July 2026</span> line in the Gulf card with:
+
+html
+          <div class="frow">
+            <span class="fmeta">22 July 2026</span>
+            <a class="flink" href="oxford-analytica-gulf-states-partners-extended-war.pdf" target="_blank" rel="noopener">Read the brief (PDF) ↗</a>
+          </div>
+and add these lines to the <style> block:
+
+css
+  .frow{margin-top:auto;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline;justify-content:space-between}
+  .frow .fmeta{margin-top:0}
+  .flink{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#33a8a8;border-bottom:1px solid #008080;padding-bottom:2px}
+  .flink:hover{color:#efefee;border-color:#efefee}
+One thing to check before it goes live: the PDF is marked “© 2026 Dow Jones & Company, Inc. All rights reserved” and normally sits behind the subscriber paywall. Posting the full PDF publicly may need Oxford Analytica’s permission even though you wrote it, so a quick email to Warwick would settle it. If they say no, delete the <a class="flink" …> line and the card still works without the link.
+
+Index
+Code
+·HTML
+Oxford analytica gulf states partners extended war
+Document
+·PDF
+Pasted text.txt
+Pasted text.txt
+TXT
+1792859656162_image.png
+its come out like this: what have i done worng?:
+
+Shared a file, read a file, ran a command
+When you swapped in the new CSS lines, the four lines that style the cards themselves were deleted along with the old ones: .fitem, .fitem::before, .fstat and .fmeta. Without them the cards have no navy background, so the grey divider colour shows through and fills the whole box. The labels also lose their small teal capitals, and the text loses its spacing. I’ve put those lines back in your file.
+
+I fixed three smaller things while I was in there:
+
+Section ID: it was id="Oxford Analytica", which isn’t allowed to contain a space. It’s now id="oxford-analytica".
+Empty label: an empty <span class="runin"> at the start of the intro paragraph was causing the indent before “Analysis written…”. I removed it.
+Second card: its “Further analysis” title had been deleted, so the card was just a label and “Forthcoming”. I put the title back; delete that one <h3> line if you meant to remove it.
+The fixed file passes the HTML validator and renders correctly. Replace your index.html on GitHub with it.
+
+Two things to check on GitHub:
+
+Brief PDF: oxford-analytica-gulf-states-partners-extended-war.pdf must be uploaded next to index.html, or the “Read the brief” link won’t open.
+RFI form: your RFI button now points to Westra_Global_Advisory_-_RFI_fillable.pdf, so the form needs to be uploaded with exactly that name. The version I sent ends in _2, so rename it or change the link to match.
+Your screenshot still shows the old “Forthcoming” heading, which isn’t in this code. If you still see it after uploading, GitHub Pages is showing a cached copy: wait a minute and hard-refresh with Ctrl+Shift+R, or Cmd+Shift+R on a Mac.
+
+Index
+Code
+·HTML
+
+
+
+Claude is AI and can make mistakes.
+
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -27,16 +139,16 @@
     --signal-soft:rgba(0,128,128,0.16); /* teal wash (was a stray copper tint) */
     --line:rgba(239,239,238,0.10);
     --line-strong:rgba(239,239,238,0.20);
-
+ 
     /* type */
     --font:Arial;
     --track:.16em;          /* uppercase label tracking */
-
+ 
     /* layout */
     --maxw:1180px;
     --ease:cubic-bezier(.22,.61,.36,1);
   }
-
+ 
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;overflow-x:clip}
   body{
@@ -49,7 +161,7 @@
     overflow-x:hidden;
   }
   img,svg{display:block;max-width:100%}
-
+ 
   /* the map grid behind the whole page */
   .graticule{
     position:fixed; inset:0; z-index:0; pointer-events:none;
@@ -61,21 +173,21 @@
     mask-image:radial-gradient(120% 90% at 70% 10%, #000 0%, transparent 70%);
     opacity:.55;
   }
-
+ 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:1}
-
+ 
   /* ---- typography helpers ---- */
   .mono{font-size:.72rem;letter-spacing:var(--track);text-transform:uppercase;color:var(--slate)}
   h1,h2,h3,h4{font-weight:400;line-height:1.08;letter-spacing:-.01em}
-
+ 
   .eyebrow{display:inline-flex;align-items:center;gap:.7em;color:var(--signal-text)}
   .eyebrow::before{content:"";width:26px;height:1px;background:var(--signal);display:inline-block}
-
+ 
   a{color:inherit;text-decoration:none}
   :focus-visible{outline:2px solid var(--signal-text);outline-offset:3px;border-radius:2px}
   .skip{position:absolute;left:-999px;top:12px;z-index:100;background:var(--bone);color:var(--ink);padding:10px 14px}
   .skip:focus{left:12px}
-
+ 
   /* ---- header ---- */
   header{
     position:fixed;top:0;left:0;right:0;z-index:50;
@@ -90,13 +202,13 @@
   nav a{font-size:.68rem;letter-spacing:var(--track);text-transform:uppercase;color:var(--bone-dim);transition:color .25s}
   nav a:hover{color:var(--signal-text)}
   .nav-toggle{display:none}
-
+ 
   /* ---- hero ---- */
   .hero{position:relative;padding:212px 32px 96px;min-height:92vh;display:flex;flex-direction:column;justify-content:center}
   .hero h1{font-size:clamp(2.7rem,6.4vw,5.4rem);max-width:16ch;margin:26px 0 0}
   .hero h1 em{font-style:italic;color:var(--signal-text)}
   .hero .lede{font-size:clamp(1.05rem,1.7vw,1.3rem);color:var(--bone-dim);max-width:56ch;margin-top:28px;line-height:1.55}
-
+ 
   .ticker{margin-top:54px;display:flex;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .ticker .cell{flex:1 1 200px;padding:18px 24px 18px 0;border-right:1px solid var(--line)}
   .ticker .cell + .cell{padding-left:24px}
@@ -104,7 +216,7 @@
   .ticker .k{display:block;color:var(--slate)}
   .ticker .v{display:block;font-size:1.12rem;margin-top:6px;color:var(--bone)}
   .ticker .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--signal);margin-right:8px;vertical-align:middle}
-
+ 
   /* ---- section scaffolding ---- */
   .band{padding:104px 0;position:relative}
   .band + .band{border-top:1px solid var(--line)}
@@ -114,7 +226,7 @@
   .sec-head .rule{flex:1;height:1px;background:var(--line);align-self:center;margin-left:6px}
   .sec-lede{font-size:1.06rem;line-height:1.75;color:var(--bone-dim);max-width:72ch;margin:-18px 0 44px}
   .runin{font-size:.7rem;letter-spacing:var(--track);text-transform:uppercase;color:var(--signal-text);margin-right:14px;white-space:nowrap}
-
+ 
   /* ---- profile ---- */
   .profile{display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:start}
   .bio .name{font-size:1.5rem;margin-bottom:18px;display:block}
@@ -127,7 +239,7 @@
   .sidecard li{display:flex;gap:12px;font-size:.95rem;color:var(--bone-dim);align-items:baseline}
   .sidecard li::before{content:"\00A7";color:var(--signal-text);font-size:.85rem}
   .sidecard .roots{color:var(--bone-dim);font-size:.82rem;letter-spacing:.02em;line-height:1.7}
-
+ 
   /* ---- specialisms ---- */
   .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
   .cap{background:var(--ink);padding:36px 30px;transition:background .35s var(--ease)}
@@ -138,7 +250,7 @@
   .cap ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:9px}
   .cap li{font-size:.78rem;letter-spacing:.04em;color:var(--slate);display:flex;gap:9px;line-height:1.4}
   .cap li::before{content:"—";color:var(--signal)}
-
+ 
   /* ---- selected engagements ---- */
   .work{display:flex;flex-direction:column}
   .eng{display:grid;grid-template-columns:100px 90px 1fr auto;gap:40px;align-items:start;padding:30px 0;border-top:1px solid var(--line)}
@@ -149,7 +261,7 @@
   .eng .body p{color:var(--bone-dim);font-size:1rem;max-width:62ch}
   .eng .body p + p{margin-top:12px}
   .eng .tag{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--signal-text);border:1px solid var(--line-strong);padding:6px 11px;white-space:nowrap}
-
+ 
   /* ---- testimonials ---- */
   .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
   .quote{background:var(--ink);padding:36px 30px;display:flex;flex-direction:column;gap:22px;position:relative}
@@ -157,7 +269,7 @@
   .quote p{font-style:italic;font-size:1.16rem;line-height:1.5;color:var(--bone)}
   .quote .by{font-size:.66rem;letter-spacing:.08em;color:var(--slate);margin-top:auto;line-height:1.7;text-transform:uppercase}
   .quote .by b{display:block;color:var(--bone);font-weight:400;letter-spacing:.05em}
-
+ 
   /* ---- insights ---- */
   .insights{display:flex;flex-direction:column}
   .post{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;padding:24px 0;border-top:1px solid var(--line)}
@@ -167,18 +279,21 @@
   .post .meta{font-size:.68rem;letter-spacing:.1em;color:var(--slate);text-align:right;white-space:nowrap}
   .post .src{display:block;color:var(--bone-dim);margin-top:5px}
   .more{display:inline-block;margin-top:30px;color:var(--signal-text)}
-
-  /* ---- forthcoming ---- */
-    .forth{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+ 
+  /* ---- oxford analytica ---- */
+  .forth{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .fitem{background:var(--ink);padding:32px 28px;display:flex;flex-direction:column;gap:12px;position:relative}
+  .fitem::before{content:"";position:absolute;top:0;left:0;width:38px;height:2px;background:var(--signal)}
+  .fstat{font-size:.62rem;letter-spacing:var(--track);text-transform:uppercase;color:var(--signal-text)}
   .fitem h3{font-size:1.24rem;color:var(--bone);line-height:1.25}
   .fdesc{font-size:.96rem;color:var(--bone-dim);line-height:1.6;max-width:52ch}
-  .fmeta{margin-top:auto}
-  @media (max-width:880px){.forth{grid-template-columns:1fr}}
-    .frow{margin-top:auto;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline;justify-content:space-between}
+  .fmeta{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-top:auto}
+  .frow{margin-top:auto;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline;justify-content:space-between}
   .frow .fmeta{margin-top:0}
-  .flink{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#33a8a8;border-bottom:1px solid #008080;padding-bottom:2px}
-  .flink:hover{color:#efefee;border-color:#efefee}
-
+  .flink{font-size:.68rem;letter-spacing:var(--track);text-transform:uppercase;color:var(--signal-text);border-bottom:1px solid var(--signal);padding-bottom:2px}
+  .flink:hover{color:var(--bone);border-color:var(--bone)}
+  @media (max-width:880px){.forth{grid-template-columns:1fr}}
+ 
   /* ---- contact ---- */
   .contact{padding:120px 32px;position:relative}
   .contact .eyebrow{margin-bottom:26px}
@@ -191,15 +306,15 @@
   .btn-solid:hover{background:transparent;color:var(--signal-text)}
   .btn.ghost{border-color:var(--line-strong);color:var(--bone-dim)}
   .btn.ghost:hover{background:transparent;border-color:var(--bone);color:var(--bone)}
-
+ 
   /* ---- footer ---- */
   footer{border-top:1px solid var(--line);padding:38px 0;position:relative;z-index:1}
   .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
-
+ 
   /* ---- reveal on scroll ---- */
   .js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
   .js .reveal.in{opacity:1;transform:none}
-
+ 
   /* ---- mobile ---- */
   @media (max-width:880px){
     .wrap{padding:0 22px}
@@ -223,7 +338,7 @@
     .contact{padding:96px 22px}
     .compass-mark{width:185px;right:-14px;top:auto;bottom:14px;opacity:.13}
   }
-
+ 
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
     .js .reveal{opacity:1;transform:none}
@@ -234,7 +349,7 @@
 <body>
 <a class="skip" href="#profile">Skip to content</a>
 <div class="graticule" aria-hidden="true"></div>
-
+ 
 <header>
   <a class="mark" href="#top" aria-label="Westra Global Advisory, back to top">
     <b>WESTRA</b><span>GLOBAL ADVISORY</span>
@@ -248,14 +363,14 @@
     <a href="#contact">Contact</a>
   </nav>
 </header>
-
+ 
 <main id="top">
   <!-- HERO -->
   <section class="hero wrap">
     <span class="mono eyebrow reveal">Geopolitical Risk Advisory · EMEA</span>
     <h1 class="reveal">World events <em>affect</em> business decisions</h1>
     <p class="lede reveal">I deliver data and interpretation-led geopolitical risk briefs for companies and organisations. Rather than summarising events, I focus on second-order effects, hidden exposure, and market transmission mechanisms to identify risks and opportunities ahead of consensus narratives.</p>
-
+ 
     <div class="ticker reveal">
       <div class="cell">
         <span class="k mono">Base</span>
@@ -275,7 +390,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- PROFILE -->
   <section class="band" id="profile">
     <div class="wrap">
@@ -306,7 +421,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- SPECIALISMS -->
   <section class="band" id="specialisms">
     <div class="wrap">
@@ -352,7 +467,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- SELECTED WORK -->
   <section class="band" id="work">
     <div class="wrap">
@@ -394,7 +509,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- TESTIMONIALS -->
   <section class="band" id="testimonials">
     <div class="wrap">
@@ -419,7 +534,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- INSIGHTS -->
   <section class="band" id="insights">
     <div class="wrap">
@@ -469,37 +584,36 @@
       <a class="mono more reveal" href="https://atlasinstitute.org/author/lara-westra/" target="_blank" rel="noopener">All writing at the Atlas Institute ↗</a>
     </div>
   </section>
-
+ 
   <!-- Oxford Analytica -->
-  <section class="band" id="Oxford Analytica">
+  <section class="band" id="oxford-analytica">
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="num">§ 06</span>
         <h2>Oxford Analytica</h2>
         <span class="rule"></span>
       </div>
-      <p class="sec-lede reveal"><span class="runin"></span>Analysis written for Oxford Analytica from Dow Jones, which provides independent, forward-looking analysis of world politics and international political economy to policymakers and business leaders across nearly 200 subscribing governments, multinational corporations, and international institutions.</p>
+      <p class="sec-lede reveal">Analysis written for Oxford Analytica from Dow Jones, which provides independent, forward-looking analysis of world politics and international political economy to policymakers and business leaders across nearly 200 subscribing governments, multinational corporations, and international institutions.</p>
       <div class="forth reveal">
         <article class="fitem">
           <span class="fstat">Oxford Analytica Daily Brief · Emerging economies</span>
           <h3>Gulf states’ partners will fear an extended war</h3>
           <p class="fdesc">How a prolonged US–Iran conflict could strain the Gulf loans, investment, currency swaps and remittances that Pakistan, Egypt and Ethiopia depend on.</p>
-                    <div class="frow">
+          <div class="frow">
             <span class="fmeta">22 July 2026</span>
             <a class="flink" href="oxford-analytica-gulf-states-partners-extended-war.pdf" target="_blank" rel="noopener">Read the brief (PDF) ↗</a>
           </div>
         </article>
         <article class="fitem">
           <span class="fstat">Oxford Analytica Daily Brief · Emerging economies</span>
-        
+          <h3>Further analysis</h3>
           <span class="fmeta">Forthcoming</span>
         </article>
-
       </div>
-       <a class="mono more reveal" href="https://www.oxan.com/services/daily-brief/" target="_blank" rel="noopener">The Oxford Analytica Daily Brief ↗</a>
+      <a class="mono more reveal" href="https://www.oxan.com/services/daily-brief/" target="_blank" rel="noopener">The Oxford Analytica Daily Brief ↗</a>
     </div>
   </section>
-
+ 
   <!-- CONTACT -->
   <section class="contact wrap" id="contact">
     <svg viewBox="-100 -100 200 200" class="compass-mark" aria-hidden="true" focusable="false">
@@ -530,14 +644,14 @@
     </div>
   </section>
 </main>
-
+ 
 <footer>
   <div class="wrap foot">
     <span class="mono">© 2026 Westra Global Advisory · Lara Isabella Westra</span>
     <span class="mono">Oxford · 51.7520°N, 1.2577°W</span>
   </div>
 </footer>
-
+ 
 <script>
   // mobile menu
   var toggle = document.querySelector('.nav-toggle'), nav = document.getElementById('nav');
@@ -548,7 +662,7 @@
   toggle.addEventListener('click', function(){ setMenu(!nav.classList.contains('open')); });
   nav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setMenu(false); });
-
+ 
   // reveal on scroll
   var items = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
@@ -562,3 +676,4 @@
 </script>
 </body>
 </html>
+Claude finished the response
