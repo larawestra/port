@@ -29,7 +29,7 @@
     --line-strong:rgba(239,239,238,0.20);
 
     /* type */
-    --font:Arial,"Helvetica Neue",Helvetica,sans-serif;
+    --font:Arial;
     --track:.16em;          /* uppercase label tracking */
 
     /* layout */
@@ -169,12 +169,15 @@
   .more{display:inline-block;margin-top:30px;color:var(--signal-text)}
 
   /* ---- forthcoming ---- */
-  .forth{border:1px solid var(--line)}
-  .fitem{background:var(--ink);padding:32px 28px;display:flex;flex-direction:column;gap:12px;position:relative}
-  .fitem::before{content:"";position:absolute;top:0;left:0;width:38px;height:2px;background:var(--signal)}
-  .fstat{font-size:.62rem;letter-spacing:var(--track);text-transform:uppercase;color:var(--signal-text)}
-  .fitem h3{font-size:1.24rem;color:var(--bone-dim);line-height:1.25}
-  .fmeta{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+    .forth{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .fitem h3{font-size:1.24rem;color:var(--bone);line-height:1.25}
+  .fdesc{font-size:.96rem;color:var(--bone-dim);line-height:1.6;max-width:52ch}
+  .fmeta{margin-top:auto}
+  @media (max-width:880px){.forth{grid-template-columns:1fr}}
+    .frow{margin-top:auto;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline;justify-content:space-between}
+  .frow .fmeta{margin-top:0}
+  .flink{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#33a8a8;border-bottom:1px solid #008080;padding-bottom:2px}
+  .flink:hover{color:#efefee;border-color:#efefee}
 
   /* ---- contact ---- */
   .contact{padding:120px 32px;position:relative}
@@ -475,15 +478,25 @@
         <h2>Forthcoming</h2>
         <span class="rule"></span>
       </div>
-      <p class="sec-lede reveal"><span class="runin">In progress</span>New analysis written for Oxford Analytica from Dow Jones, publishing later this year. Titles and links will appear here on release. Oxford Analytica provides independent, forward-looking analysis of world politics and international political economy to policymakers and business leaders across nearly 200 subscribing governments, multinational corporations, and international institutions.</p>
+      <p class="sec-lede reveal"><span class="runin"></span>Analysis written for Oxford Analytica from Dow Jones, which provides independent, forward-looking analysis of world politics and international political economy to policymakers and business leaders across nearly 200 subscribing governments, multinational corporations, and international institutions.</p>
       <div class="forth reveal">
-        <div class="fitem">
-          <span class="fstat">Oxford Analytica from Dow Jones</span>
-          <h3>Emerging Economies Daily Brief Publication</h3>
-          <span class="fmeta">Expected 2026</span>
-        </div>
+        <article class="fitem">
+          <span class="fstat">Oxford Analytica Daily Brief · Emerging economies</span>
+          <h3>Gulf states’ partners will fear an extended war</h3>
+          <p class="fdesc">How a prolonged US–Iran conflict could strain the Gulf loans, investment, currency swaps and remittances that Pakistan, Egypt and Ethiopia depend on.</p>
+                    <div class="frow">
+            <span class="fmeta">22 July 2026</span>
+            <a class="flink" href="oxford-analytica-gulf-states-partners-extended-war.pdf" target="_blank" rel="noopener">Read the brief (PDF) ↗</a>
+          </div>
+        </article>
+        <article class="fitem">
+          <span class="fstat">Oxford Analytica Daily Brief · Emerging economies</span>
+          <h3>Further analysis</h3>
+          <span class="fmeta">Forthcoming</span>
+        </article>
+
       </div>
-      <a class="mono more reveal" href="https://www.oxan.com/services/daily-brief/" target="_blank" rel="noopener">The Oxford Analytica Daily Brief ↗</a>
+       <a class="mono more reveal" href="https://www.oxan.com/services/daily-brief/" target="_blank" rel="noopener">The Oxford Analytica Daily Brief ↗</a>
     </div>
   </section>
 
